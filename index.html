@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MOTOPEDIA ULTRA | دایرةالمعارف موتورسیکلت</title>
+<meta name="description" content="موتوپدیا اولترا؛ دایرةالمعارف تعاملی موتورسیکلت با ۷۸ مدل از ۱۹ برند، مشخصات فنی، مقایسه، رکوردها، دانستنی، واژه‌نامه، کوییز، گاراژ شخصی و لابراتوار انتخاب موتور.">
+<meta property="og:title" content="MOTOPEDIA ULTRA — دایرةالمعارف موتورسیکلت">
+<meta property="og:description" content="۷۸ مدل، ۱۹ برند، مقایسه، رکوردها، دانستنی و بازی؛ همه در یک صفحه.">
+<meta name="theme-color" content="#07090d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="noise"></div>
+<div class="scrollbar" id="scrollbar"></div>
+<div class="toastWrap" id="toastWrap"></div>
+
+<svg style="display:none">
+  <symbol id="i-bike" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="14" cy="46" r="9"></circle>
+    <circle cx="50" cy="46" r="9"></circle>
+    <path d="M14 46 L26 28 L38 28 L34 40 L28 46"></path>
+    <path d="M26 28 L22 20 H31"></path>
+    <path d="M38 28 L45 20 H50 L50 46"></path>
+    <path d="M34 40 L50 46"></path>
+  </symbol>
+</svg>
+
+<header class="header">
+  <a class="logo" href="#home"><span>M</span><div><b>MOTOPEDIA</b><small>دایرةالمعارف موتورسیکلت</small></div></a>
+  <nav><a href="#catalog">موتورها</a><a href="#brands">برندها</a><a href="#records">رکوردها</a><a href="#knowledge">دانستنی‌ها</a><a href="#garage">گاراژ</a><a href="#lab">لابراتوار</a><a href="#quiz">بازی</a></nav>
+  <div class="headBtns"><button id="theme" title="تغییر پوسته">◐</button><button class="menu" id="menu" title="منو">☰</button></div>
+</header>
+
+<main id="home">
+<section class="hero">
+ <div class="heroCopy">
+  <span class="kicker">THE BIG MOTORCYCLE UNIVERSE</span>
+  <h1>هر چیزی که درباره <strong>موتورسیکلت</strong> می‌خواهی بدانی.</h1>
+  <p>۷۸ مدل از ۱۹ برند، مشخصات فنی، مقایسه، رکوردهای پرقدرت‌ترین و سبک‌وزن‌ترین‌ها، تاریخچه، واژه‌نامه، کوییز و گاراژ شخصی؛ همه در یک صفحه و بدون نیاز به ثبت‌نام.</p>
+  <div class="heroSearch"><span>⌕</span><input id="globalSearch" placeholder="مثلاً Ninja، Ducati، Adventure، برقی..."><button onclick="jumpSearch()">جستجو</button></div>
+  <div class="heroLinks"><a href="#catalog">شروع گشت‌وگذار ↓</a><a href="#knowledge">یک دانستنی تصادفی ✦</a><a href="#records">رکوردهای موتوپدیا</a></div>
+ </div>
+ <div class="heroVisual">
+   <div class="orbit o1"></div><div class="orbit o2"></div>
+   <div class="heroBike"><svg viewBox="0 0 64 64"><use href="#i-bike"/></svg></div>
+   <div class="badge b1 num">78<br><small>MODEL</small></div>
+   <div class="badge b2 num">19<br><small>BRAND</small></div>
+   <div class="badge b3">360°<br><small>KNOWLEDGE</small></div>
+ </div>
+</section>
+
+<section class="quickStats">
+ <div><b id="modelCount" class="num">0</b><span>مدل در دیتابیس</span></div>
+ <div><b id="brandCount" class="num">0</b><span>برند</span></div>
+ <div><b class="num">9</b><span>کلاس اصلی از جمله برقی</span></div>
+ <div><b>∞</b><span>جای رشد</span></div>
+</section>
+
+<section class="section" id="catalog">
+ <div class="sectionTitle"><div><span class="kicker">EXPLORE</span><h2>جهان موتورها</h2><p>مدل موردنظرت را با فیلتر، مرتب‌سازی و جستجو پیدا کن.</p></div><span id="results"></span></div>
+ <div class="filters">
+   <label class="bigSearch">⌕ <input id="search" placeholder="مدل، برند، کلاس یا نوع موتور..."></label>
+   <select id="brandFilter"><option value="">همه برندها</option></select>
+   <select id="typeFilter"><option value="">همه کلاس‌ها</option></select>
+   <select id="ccFilter">
+     <option value="">هر حجم موتوری</option>
+     <option value="small">تا ۵۰۰cc</option>
+     <option value="mid">۵۰۰ تا ۱۰۰۰cc</option>
+     <option value="big">بیشتر از ۱۰۰۰cc</option>
+     <option value="electric">برقی</option>
+   </select>
+   <select id="budgetFilter">
+     <option value="">هر بودجه‌ای</option>
+     <option value="low">تا $۸,۰۰۰</option>
+     <option value="mid">$۸,۰۰۰ تا $۱۸,۰۰۰</option>
+     <option value="high">بیشتر از $۱۸,۰۰۰</option>
+   </select>
+   <select id="sortFilter">
+     <option value="">مرتب‌سازی: پیش‌فرض</option>
+     <option value="power">قدرت (بیشترین)</option>
+     <option value="light">وزن (کمترین)</option>
+     <option value="priceAsc">قیمت (کمترین)</option>
+     <option value="priceDesc">قیمت (بیشترین)</option>
+     <option value="rating">امتیاز</option>
+     <option value="name">نام (الفبا)</option>
+   </select>
+ </div>
+ <div class="chips" id="chips"></div>
+ <div class="cards" id="cards"></div>
+ <div class="loadMoreWrap" id="loadMoreWrap"></div>
+</section>
+
+<section class="section darkSection" id="brands">
+ <div class="sectionTitle"><div><span class="kicker">MANUFACTURERS</span><h2>برندها را بشناس</h2><p>داستان، کشور و کلاس‌های محبوب هر سازنده؛ روی هر برند بزن تا مدل‌هایش را ببینی.</p></div></div>
+ <div class="brandGrid" id="brandGrid"></div>
+</section>
+
+<section class="section" id="records">
+ <div class="sectionTitle"><div><span class="kicker">LEADERBOARD</span><h2>رکوردهای موتوپدیا</h2><p>برترین‌های دیتابیس در سه معیار پرکاربرد.</p></div></div>
+ <div class="podiumGrid">
+   <div class="podiumCard"><h4>⚡ پرقدرت‌ترین‌ها</h4><div id="podiumPower"></div></div>
+   <div class="podiumCard"><h4>🪶 سبک‌وزن‌ترین‌ها</h4><div id="podiumLight"></div></div>
+   <div class="podiumCard"><h4>💰 بهترین ارزش (قیمت به ازای هر hp)</h4><div id="podiumValue"></div></div>
+ </div>
+</section>
+
+<section class="section darkSection" id="knowledge">
+ <div class="sectionTitle"><div><span class="kicker">KNOWLEDGE</span><h2>اتاق دانستنی‌ها</h2><p>مطالب کوتاه و خواندنی برای اینکه هر بار یک چیز جدید یاد بگیری.</p></div><button class="randomBtn" onclick="randomFact()">✦ دانستنی تصادفی</button></div>
+ <div class="factTabs" id="factTabs"></div>
+ <div class="factGrid" id="factGrid"></div>
+</section>
+
+<section class="section garage" id="garage">
+ <div class="sectionTitle"><div><span class="kicker">MY GARAGE</span><h2>گاراژ من</h2><p>مدل‌های موردعلاقه‌ات را ذخیره کن و بعداً برگرد. (ذخیره‌شده فقط در همین مرورگر)</p></div></div>
+ <div id="garageBox" class="garageBox"></div>
+</section>
+
+<section class="section lab" id="lab">
+ <div class="sectionTitle"><div><span class="kicker">MOTO LAB</span><h2>لابراتوار موتور</h2><p>با اسلایدرها بازی کن و ببین چه موتوری به سلیقه‌ات نزدیک‌تر است.</p></div></div>
+ <div class="labGrid">
+  <div class="dialCard"><div class="dial" id="dial"><div class="needle" id="needle"></div><span>POWER</span></div><div class="dialValue"><b id="powerVal" class="num">150</b><small>HP</small></div></div>
+  <div class="labControls">
+   <label>قدرت <input id="powerRange" type="range" min="40" max="220" value="150"></label>
+   <label>حجم موتور <input id="ccRange" type="range" min="100" max="2500" value="900"></label>
+   <label>وزن <input id="weightRange" type="range" min="100" max="400" value="210"></label>
+   <div class="labResult" id="labResult"></div>
+  </div>
+ </div>
+ <div class="fortune">
+  <div><span class="kicker">MOTO ORACLE</span><h3>گردونه شانس موتور</h3><p id="oracleText">دکمه را بزن؛ یک موتور تصادفی برایت انتخاب می‌کنیم.</p></div>
+  <button class="spin" onclick="spinOracle()">SPIN ✦</button>
+ </div>
+</section>
+
+<section class="section darkSection" id="compare">
+ <div class="sectionTitle"><div><span class="kicker">COMPARE</span><h2>میز مقایسه</h2><p>تا چهار موتور را کنار هم بگذار؛ بهترین مقدار هر ردیف سبز می‌شود.</p></div></div>
+ <div id="compareBox" class="compareBox"><div class="empty">برای شروع از کارت موتورها «مقایسه» را بزن.</div></div>
+</section>
+
+<section class="section" id="quiz">
+ <div class="sectionTitle"><div><span class="kicker">PLAY & LEARN</span><h2>کوییز موتورسواری</h2><p>چند سؤال کوتاه؛ ببین چقدر با دنیای موتور آشنایی.</p></div></div>
+ <div class="quizBox" id="quizBox"></div>
+</section>
+
+<section class="section darkSection achievements" id="achievements-section">
+ <div class="sectionTitle"><div><span class="kicker">ACHIEVEMENTS</span><h2>مدال‌های تو</h2><p>با گشت‌وگذار در سایت نشان جمع کن.</p></div></div>
+ <div class="achieveProgress"><i id="achieveProgress" style="width:0%"></i></div>
+ <p id="achieveCount" style="color:var(--text-faint);font-size:12px;margin-top:-14px">0 از 7 مدال باز شده</p>
+ <div class="achievementGrid" id="achievements"></div>
+</section>
+
+<section class="section" id="glossary">
+ <div class="sectionTitle"><div><span class="kicker">GLOSSARY</span><h2>واژه‌نامه موتور</h2><p>اگر یک اصطلاح را نمی‌دانی، اینجا پیدایش کن.</p></div></div>
+ <div class="glossary" id="glossaryGrid"></div>
+</section>
+
+<div class="newsletter">
+ <div class="newsletterCard">
+   <div><span class="kicker">STAY TUNED</span><h3>خبر مدل‌های جدید را اول از همه بگیر</h3><p>وقتی مدل، برند یا بخش جدیدی اضافه شد، بهت خبر می‌دهیم. (نمایشی — چیزی ارسال نمی‌شود)</p></div>
+   <form class="newsletterForm" onsubmit="return subscribe(event)">
+     <input id="newsletterEmail" type="email" placeholder="ایمیلت را وارد کن" required>
+     <button type="submit">عضویت</button>
+   </form>
+ </div>
+</div>
+
+<section class="section cta">
+ <div><span class="kicker">THE NEXT CHAPTER</span><h2>این فقط شروعشه.</h2><p>معماری سایت برای اضافه شدن هزاران مدل، تصاویر واقعی، نسل‌های مختلف، تاریخچه، منابع، نمودارهای بیشتر و صفحات اختصاصی هر مدل طراحی شده.</p></div>
+ <div class="creator">ساخته شده با ❤️ توسط <strong>ایلیا بنده‌ای</strong></div>
+</section>
+</main>
+
+<footer>
+ <div class="fcol"><b>MOTOPEDIA ULTRA</b><span>دانشنامه تعاملی موتورسیکلت</span></div>
+ <div class="footCols">
+   <div><h5>گشت‌وگذار</h5><a href="#catalog">موتورها</a><a href="#brands">برندها</a><a href="#records">رکوردها</a></div>
+   <div><h5>سرگرمی</h5><a href="#lab">لابراتوار</a><a href="#quiz">کوییز</a><a href="#garage">گاراژ</a></div>
+   <div><h5>مرجع</h5><a href="#knowledge">دانستنی‌ها</a><a href="#glossary">واژه‌نامه</a></div>
+ </div>
+</footer>
+<div class="footBottom"><span>© 2026 MOTOPEDIA ULTRA</span><span>طراحی و توسعه: ایلیا بنده‌ای</span></div>
+
+<button class="toTop" id="toTop" title="برو بالا">↑</button>
+
+<div class="modal" id="modal"><div class="modalCard"><button class="close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
+
+<script>
+window.MOTOS=[{"id":1,"brand":"Honda","name":"CBR1000RR-R Fireblade","type":"سوپراسپرت","cc":999,"hp":214,"nm":113,"kg":201,"top":299,"year":2025,"engine":"چهارسیلندر خطی","desc":"یکی از شناخته‌شده‌ترین سوپربایک‌های هوندا با تمرکز بر پیست.","accel":2.8,"fuel":7.4,"price":12550,"rating":4.7},{"id":2,"brand":"Honda","name":"CB650R","type":"نیکد","cc":649,"hp":95,"nm":63,"kg":202,"top":225,"year":2025,"engine":"چهارسیلندر خطی","desc":"نیکد چهارسیلندر با شخصیت دوربالا و مناسب خیابان.","accel":4.0,"fuel":5.9,"price":7550,"rating":4.5},{"id":3,"brand":"Honda","name":"Africa Twin","type":"ادونچر","cc":1084,"hp":102,"nm":112,"kg":231,"top":210,"year":2025,"engine":"دوقلو موازی","desc":"برای سفرهای طولانی و مسیرهای ترکیبی.","accel":3.9,"fuel":7.8,"price":8750,"rating":4.6},{"id":4,"brand":"Honda","name":"Gold Wing","type":"تورینگ","cc":1833,"hp":126,"nm":170,"kg":390,"top":180,"year":2025,"engine":"شش سیلندر تخت","desc":"تورینگ بزرگ با تمرکز بر راحتی سفر.","accel":3.6,"fuel":10.9,"price":11250,"rating":4.6},{"id":5,"brand":"Honda","name":"Rebel 500","type":"کروزر","cc":471,"hp":46,"nm":43,"kg":191,"top":160,"year":2025,"engine":"دوقلو موازی","desc":"کروزر جمع‌وجور و مناسب ورود به کلاس.","accel":4.4,"fuel":5.2,"price":5400,"rating":4.6},{"id":6,"brand":"Honda","name":"Grom","type":"شهری","cc":124,"hp":10,"nm":11,"kg":103,"top":91,"year":2025,"engine":"تک سیلندر","desc":"مینی‌موتور شهری سرگرم‌کننده.","accel":4.8,"fuel":3.7,"price":3350,"rating":4.2},{"id":7,"brand":"Yamaha","name":"YZF-R1","type":"سوپراسپرت","cc":998,"hp":200,"nm":113,"kg":201,"top":299,"year":2025,"engine":"چهارسیلندر خطی","desc":"سوپربایک مشهور یاماها با فناوری مسابقه‌ای.","accel":2.9,"fuel":7.4,"price":12050,"rating":4.7},{"id":8,"brand":"Yamaha","name":"MT-09","type":"نیکد","cc":890,"hp":117,"nm":93,"kg":193,"top":235,"year":2025,"engine":"سه سیلندر","desc":"نیکد سبک با موتور سه‌سیلندر پرگشتاور.","accel":3.7,"fuel":6.9,"price":8850,"rating":4.6},{"id":9,"brand":"Yamaha","name":"MT-07","type":"نیکد","cc":689,"hp":73,"nm":68,"kg":184,"top":210,"year":2025,"engine":"دوقلو موازی","desc":"سبک، چابک و مناسب استفاده روزمره.","accel":4.2,"fuel":6.1,"price":6850,"rating":4.6},{"id":10,"brand":"Yamaha","name":"Tenere 700","type":"ادونچر","cc":689,"hp":73,"nm":68,"kg":205,"top":190,"year":2025,"engine":"دوقلو موازی","desc":"ادونچر سبک با گرایش جدی به آفرود.","accel":4.2,"fuel":6.1,"price":6850,"rating":4.5},{"id":11,"brand":"Yamaha","name":"XMAX 300","type":"اسکوتر","cc":292,"hp":28,"nm":29,"kg":180,"top":140,"year":2025,"engine":"تک سیلندر","desc":"اسکوتر ماکسی برای شهر و سفر.","accel":4.6,"fuel":4.4,"price":4350,"rating":4.2},{"id":12,"brand":"Yamaha","name":"R7","type":"سوپراسپرت","cc":689,"hp":73,"nm":67,"kg":188,"top":220,"year":2025,"engine":"دوقلو موازی","desc":"اسپرت میان‌وزن با تمرکز بر کنترل و لذت سواری.","accel":4.2,"fuel":6.1,"price":6850,"rating":4.7},{"id":13,"brand":"Kawasaki","name":"Ninja ZX-10R","type":"سوپراسپرت","cc":998,"hp":203,"nm":114,"kg":207,"top":299,"year":2025,"engine":"چهارسیلندر خطی","desc":"سوپربایک پرچم‌دار کاوازاکی.","accel":2.9,"fuel":7.4,"price":12150,"rating":4.5},{"id":14,"brand":"Kawasaki","name":"Ninja 650","type":"سوپراسپرت","cc":649,"hp":68,"nm":64,"kg":193,"top":210,"year":2025,"engine":"دوقلو موازی","desc":"اسپرت خیابانی قابل استفاده برای هر روز.","accel":4.2,"fuel":5.9,"price":6600,"rating":4.6},{"id":15,"brand":"Kawasaki","name":"Z900","type":"نیکد","cc":948,"hp":125,"nm":97,"kg":213,"top":240,"year":2025,"engine":"چهارسیلندر خطی","desc":"نیکد چهارسیلندر با تعادل بین قدرت و استفاده شهری.","accel":3.7,"fuel":7.2,"price":9300,"rating":4.7},{"id":16,"brand":"Kawasaki","name":"Versys 650","type":"ادونچر","cc":649,"hp":67,"nm":61,"kg":219,"top":190,"year":2025,"engine":"دوقلو موازی","desc":"تورینگ سبک و چندمنظوره.","accel":4.2,"fuel":5.9,"price":6550,"rating":4.7},{"id":17,"brand":"Kawasaki","name":"Ninja H2","type":"سوپراسپرت","cc":998,"hp":231,"nm":137,"kg":238,"top":337,"year":2025,"engine":"چهارسیلندر سوپرشارژ","desc":"سوپراسپرت سوپرشارژ با عملکرد بسیار بالا.","accel":2.6,"fuel":7.4,"price":13150,"rating":4.6},{"id":18,"brand":"Suzuki","name":"Hayabusa","type":"سوپراسپرت","cc":1340,"hp":187,"nm":150,"kg":264,"top":299,"year":2025,"engine":"چهارسیلندر خطی","desc":"نام افسانه‌ای سوزوکی در کلاس هایپراسپرت.","accel":3.0,"fuel":8.8,"price":11650,"rating":4.7},{"id":19,"brand":"Suzuki","name":"GSX-8S","type":"نیکد","cc":776,"hp":82,"nm":78,"kg":202,"top":210,"year":2025,"engine":"دوقلو موازی","desc":"نیکد میان‌وزن مدرن.","accel":4.1,"fuel":6.5,"price":6950,"rating":4.7},{"id":20,"brand":"Suzuki","name":"V-Strom 800DE","type":"ادونچر","cc":776,"hp":84,"nm":78,"kg":230,"top":195,"year":2025,"engine":"دوقلو موازی","desc":"ادونچر با قابلیت مسیرهای خاکی.","accel":4.1,"fuel":6.5,"price":7000,"rating":4.5},{"id":21,"brand":"Ducati","name":"Panigale V4","type":"سوپراسپرت","cc":1103,"hp":216,"nm":120,"kg":187,"top":305,"year":2025,"engine":"V4","desc":"سوپربایک V4 با تمرکز بر پیست.","accel":2.7,"fuel":7.8,"price":20450,"rating":4.8},{"id":22,"brand":"Ducati","name":"Streetfighter V4","type":"نیکد","cc":1103,"hp":208,"nm":123,"kg":197,"top":300,"year":2025,"engine":"V4","desc":"نیکد قدرتمند با DNA سوپربایک.","accel":2.8,"fuel":7.8,"price":20000,"rating":4.8},{"id":23,"brand":"Ducati","name":"Multistrada V4","type":"ادونچر","cc":1158,"hp":170,"nm":125,"kg":243,"top":250,"year":2025,"engine":"V4","desc":"ادونچر اسپرت برای سفرهای طولانی.","accel":3.2,"fuel":8.1,"price":18000,"rating":4.7},{"id":24,"brand":"Ducati","name":"Monster","type":"نیکد","cc":937,"hp":111,"nm":93,"kg":188,"top":225,"year":2025,"engine":"V2","desc":"نیکد سبک و شناخته‌شده دوکاتی.","accel":3.8,"fuel":7.1,"price":13900,"rating":4.7},{"id":25,"brand":"BMW Motorrad","name":"S 1000 RR","type":"سوپراسپرت","cc":999,"hp":210,"nm":113,"kg":197,"top":303,"year":2025,"engine":"چهارسیلندر خطی","desc":"سوپربایک با تمرکز بر الکترونیک و عملکرد.","accel":2.8,"fuel":7.4,"price":16800,"rating":4.8},{"id":26,"brand":"BMW Motorrad","name":"R 1300 GS","type":"ادونچر","cc":1300,"hp":145,"nm":149,"kg":237,"top":225,"year":2025,"engine":"باکسر دوقلو","desc":"ادونچر پرچم‌دار BMW برای سفر و مسیرهای متنوع.","accel":3.5,"fuel":8.7,"price":14550,"rating":4.7},{"id":27,"brand":"BMW Motorrad","name":"R 18","type":"کروزر","cc":1802,"hp":91,"nm":158,"kg":345,"top":180,"year":2025,"engine":"باکسر دوقلو","desc":"کروزر بزرگ با طراحی کلاسیک.","accel":4.0,"fuel":10.8,"price":13450,"rating":4.6},{"id":28,"brand":"BMW Motorrad","name":"F 900 R","type":"نیکد","cc":895,"hp":105,"nm":92,"kg":208,"top":215,"year":2025,"engine":"دوقلو موازی","desc":"نیکد میان‌وزن برای شهر و جاده.","accel":3.9,"fuel":7.0,"price":11450,"rating":4.6},{"id":29,"brand":"KTM","name":"1390 Super Duke R","type":"نیکد","cc":1350,"hp":190,"nm":145,"kg":200,"top":250,"year":2025,"engine":"V-twin","desc":"نیکد بسیار قدرتمند با تمرکز بر چابکی.","accel":3.0,"fuel":8.9,"price":15400,"rating":4.8},{"id":30,"brand":"KTM","name":"890 Adventure R","type":"ادونچر","cc":889,"hp":105,"nm":100,"kg":215,"top":210,"year":2025,"engine":"دوقلو موازی","desc":"ادونچر با گرایش آفرود.","accel":3.9,"fuel":6.9,"price":10400,"rating":4.7},{"id":31,"brand":"KTM","name":"390 Duke","type":"نیکد","cc":399,"hp":45,"nm":39,"kg":165,"top":167,"year":2025,"engine":"تک سیلندر","desc":"نیکد سبک برای شهر و یادگیری.","accel":4.5,"fuel":4.9,"price":6450,"rating":4.8},{"id":32,"brand":"Triumph","name":"Street Triple 765 RS","type":"نیکد","cc":765,"hp":130,"nm":80,"kg":188,"top":250,"year":2025,"engine":"سه سیلندر","desc":"نیکد سه‌سیلندر اسپرت.","accel":3.6,"fuel":6.4,"price":10650,"rating":4.7},{"id":33,"brand":"Triumph","name":"Bonneville T120","type":"کلاسیک","cc":1200,"hp":80,"nm":105,"kg":236,"top":193,"year":2025,"engine":"دوقلو موازی","desc":"کلاسیک مدرن با طراحی بریتانیایی.","accel":4.1,"fuel":8.2,"price":9700,"rating":4.7},{"id":34,"brand":"Triumph","name":"Tiger 900","type":"ادونچر","cc":888,"hp":108,"nm":95,"kg":219,"top":205,"year":2025,"engine":"سه سیلندر","desc":"ادونچر سه‌سیلندر برای سفر.","accel":3.8,"fuel":6.9,"price":10050,"rating":4.8},{"id":35,"brand":"Triumph","name":"Rocket 3","type":"کروزر","cc":2458,"hp":167,"nm":221,"kg":291,"top":225,"year":2025,"engine":"سه سیلندر","desc":"موتور حجیم و گشتاورمحور.","accel":3.2,"fuel":13.5,"price":16600,"rating":4.7},{"id":36,"brand":"Harley-Davidson","name":"Sportster S","type":"کروزر","cc":1252,"hp":121,"nm":127,"kg":228,"top":200,"year":2025,"engine":"V-twin","desc":"کروزر مدرن با موتور Revolution Max.","accel":3.7,"fuel":8.5,"price":12700,"rating":4.7},{"id":37,"brand":"Harley-Davidson","name":"Street Glide","type":"تورینگ","cc":1923,"hp":107,"nm":175,"kg":369,"top":175,"year":2025,"engine":"V-twin","desc":"تورینگ بزرگ برای مسافت‌های طولانی.","accel":3.8,"fuel":11.3,"price":13950,"rating":4.8},{"id":38,"brand":"Royal Enfield","name":"Himalayan 450","type":"ادونچر","cc":452,"hp":40,"nm":40,"kg":196,"top":145,"year":2025,"engine":"تک سیلندر","desc":"ادونچر میان‌حجم با رویکرد ساده و کاربردی.","accel":4.5,"fuel":5.1,"price":3050,"rating":4.4},{"id":39,"brand":"Royal Enfield","name":"Interceptor 650","type":"کلاسیک","cc":648,"hp":47,"nm":52,"kg":218,"top":170,"year":2025,"engine":"دوقلو موازی","desc":"کلاسیک دوقلو برای خیابان.","accel":4.4,"fuel":5.9,"price":3450,"rating":4.5},{"id":40,"brand":"Aprilia","name":"RS 660","type":"سوپراسپرت","cc":659,"hp":100,"nm":67,"kg":183,"top":240,"year":2025,"engine":"دوقلو موازی","desc":"اسپرت سبک و میان‌وزن.","accel":3.9,"fuel":6.0,"price":10950,"rating":4.8},{"id":41,"brand":"Aprilia","name":"Tuono V4 Factory","type":"نیکد","cc":1077,"hp":175,"nm":121,"kg":209,"top":270,"year":2025,"engine":"V4","desc":"نیکد V4 با عملکرد بالا.","accel":3.2,"fuel":7.7,"price":16000,"rating":4.8},{"id":42,"brand":"MV Agusta","name":"Brutale 1000 RR","type":"نیکد","cc":998,"hp":208,"nm":116,"kg":186,"top":300,"year":2025,"engine":"چهارسیلندر خطی","desc":"نیکد ایتالیایی با طراحی و عملکرد خاص.","accel":2.8,"fuel":7.4,"price":20350,"rating":4.7},{"id":43,"brand":"Honda","name":"X-ADV 750","type":"اسکوتر","cc":745,"hp":58,"nm":69,"kg":238,"top":170,"year":2025,"engine":"دوقلو موازی","desc":"اسکوتر ادونچر با گیربکس اتوماتیک دوکلاچه و توانایی مسیرهای خاکی سبک.","accel":4.8,"fuel":4.3,"price":6650,"rating":4.5},{"id":44,"brand":"Honda","name":"CB1000R","type":"نیکد","cc":1000,"hp":152,"nm":104,"kg":212,"top":230,"year":2025,"engine":"چهارسیلندر خطی","desc":"نیکد نئوکلاسیک با پلتفرم سوپرببایک و طراحی خطوط برهنه.","accel":3.2,"fuel":6.5,"price":10850,"rating":4.6},{"id":45,"brand":"Yamaha","name":"TMAX 560","type":"اسکوتر","cc":562,"hp":47,"nm":55,"kg":220,"top":160,"year":2025,"engine":"دوقلو موازی","desc":"ماکسی‌اسکوتر پرچم‌دار یاماها با رانندگی راحت شهری.","accel":5.5,"fuel":4.9,"price":5800,"rating":4.5},{"id":46,"brand":"Yamaha","name":"MT-03","type":"نیکد","cc":321,"hp":42,"nm":29,"kg":168,"top":170,"year":2025,"engine":"دوقلو موازی","desc":"نیکد ورودی سبک با شخصیت خانواده MT.","accel":5.3,"fuel":4.2,"price":5050,"rating":4.5},{"id":47,"brand":"Kawasaki","name":"Versys 1000","type":"ادونچر","cc":1043,"hp":120,"nm":102,"kg":257,"top":220,"year":2025,"engine":"چهارسیلندر خطی","desc":"تورینگ-ادونچر جاده‌ای با راحتی بالا برای سفرهای طولانی.","accel":3.6,"fuel":6.8,"price":9700,"rating":4.7},{"id":48,"brand":"Kawasaki","name":"Z650RS","type":"کلاسیک","cc":649,"hp":68,"nm":64,"kg":187,"top":200,"year":2025,"engine":"دوقلو موازی","desc":"رترو مدرن با ظاهر دهه هفتاد و رانندگی امروزی.","accel":4.3,"fuel":5.4,"price":6800,"rating":4.6},{"id":49,"brand":"Kawasaki","name":"Ninja e-1","type":"برقی","cc":0,"hp":9,"nm":40,"kg":140,"top":95,"year":2025,"engine":"موتور الکتریکی","desc":"اسپرت برقی سبک و مناسب یادگیری و مسیرهای شهری.","accel":6.8,"fuel":0,"price":3050,"rating":3.9},{"id":50,"brand":"Suzuki","name":"GSX-R750","type":"سوپراسپرت","cc":750,"hp":148,"nm":86,"kg":190,"top":260,"year":2025,"engine":"چهارسیلندر خطی","desc":"اسپرت میان‌حجم افسانه‌ای با تعادل معروف بین قدرت و وزن.","accel":3.3,"fuel":6.6,"price":9550,"rating":4.6},{"id":51,"brand":"Suzuki","name":"Katana","type":"نیکد","cc":999,"hp":152,"nm":106,"kg":215,"top":248,"year":2025,"engine":"چهارسیلندر خطی","desc":"نیکد با طراحی الهام‌گرفته از کاتانای دهه هشتاد.","accel":3.3,"fuel":6.7,"price":10250,"rating":4.5},{"id":52,"brand":"Ducati","name":"Scrambler Icon","type":"کلاسیک","cc":803,"hp":73,"nm":67,"kg":189,"top":180,"year":2025,"engine":"V2","desc":"کلاسیک شهری بازیگوش با روح اسکرمبلرهای اصیل.","accel":4.4,"fuel":5.8,"price":11650,"rating":4.8},{"id":53,"brand":"Ducati","name":"Diavel V4","type":"کروزر","cc":1158,"hp":168,"nm":126,"kg":223,"top":270,"year":2025,"engine":"V4","desc":"کروزر پرقدرت با شخصیت اسپرت و نشستی آسوده.","accel":3.0,"fuel":8.0,"price":18800,"rating":4.7},{"id":54,"brand":"BMW Motorrad","name":"F 800 GS","type":"ادونچر","cc":853,"hp":87,"nm":91,"kg":219,"top":200,"year":2025,"engine":"دوقلو موازی","desc":"ادونچر میان‌حجم با تعادل خوب بین جاده و خاکی.","accel":4.0,"fuel":6.3,"price":10850,"rating":4.6},{"id":55,"brand":"BMW Motorrad","name":"CE 04","type":"برقی","cc":0,"hp":42,"nm":62,"kg":231,"top":120,"year":2025,"engine":"موتور الکتریکی","desc":"اسکوتر برقی مینیمال با طراحی آینده‌نگر برای شهر.","accel":6.0,"fuel":0,"price":5900,"rating":4.4},{"id":56,"brand":"KTM","name":"690 SMC R","type":"نیکد","cc":693,"hp":74,"nm":73,"kg":149,"top":200,"year":2025,"engine":"تک سیلندر","desc":"سوپرموتارد تک‌سیلندر سبک با چابکی بی‌نظیر.","accel":3.8,"fuel":4.6,"price":8850,"rating":4.8},{"id":57,"brand":"Triumph","name":"Speed Triple 1200 RS","type":"نیکد","cc":1160,"hp":180,"nm":125,"kg":198,"top":250,"year":2025,"engine":"سه سیلندر","desc":"نیکد پرچم‌دار تریامف با تعادل قدرت و کنترل.","accel":2.9,"fuel":7.6,"price":14500,"rating":4.6},{"id":58,"brand":"Triumph","name":"Scrambler 900","type":"کلاسیک","cc":900,"hp":65,"nm":80,"kg":207,"top":170,"year":2025,"engine":"دوقلو موازی","desc":"اسکرمبلر مدرن با ظاهر رترو و توان کافی برای آفرود سبک.","accel":4.6,"fuel":5.6,"price":8550,"rating":4.6},{"id":59,"brand":"Harley-Davidson","name":"Fat Boy","type":"کروزر","cc":1868,"hp":93,"nm":155,"kg":317,"top":175,"year":2025,"engine":"V-twin","desc":"کروزر شمایل‌ساز هارلی با طرح چرخ‌های حجیم.","accel":4.2,"fuel":9.8,"price":13550,"rating":4.7},{"id":60,"brand":"Harley-Davidson","name":"Pan America 1250","type":"ادونچر","cc":1252,"hp":150,"nm":128,"kg":258,"top":210,"year":2025,"engine":"V-twin","desc":"اولین ادونچر بزرگ هارلی با تعلیق تطبیقی هوشمند.","accel":3.4,"fuel":8.4,"price":14700,"rating":4.8},{"id":61,"brand":"Harley-Davidson","name":"LiveWire S2 Del Mar","type":"برقی","cc":0,"hp":84,"nm":168,"kg":195,"top":161,"year":2025,"engine":"موتور الکتریکی","desc":"نیکد برقی زیرمجموعه لایوواِر با گشتاور آنی.","accel":3.5,"fuel":0,"price":7750,"rating":4.7},{"id":62,"brand":"Royal Enfield","name":"Continental GT 650","type":"کلاسیک","cc":648,"hp":47,"nm":52,"kg":211,"top":170,"year":2025,"engine":"دوقلو موازی","desc":"کافه‌ریسر کلاسیک با نشستی اسپرت و شخصیت بریتانیایی.","accel":4.6,"fuel":5.7,"price":3500,"rating":4.4},{"id":63,"brand":"Royal Enfield","name":"Scram 411","type":"ادونچر","cc":411,"hp":27,"nm":32,"kg":185,"top":118,"year":2025,"engine":"تک سیلندر","desc":"ادونچر شهری سبک برای اولین تجربه‌های آفرود.","accel":5.8,"fuel":3.4,"price":2750,"rating":4.3},{"id":64,"brand":"Aprilia","name":"RSV4 Factory","type":"سوپراسپرت","cc":1099,"hp":217,"nm":125,"kg":199,"top":300,"year":2025,"engine":"V4","desc":"سوپربایک پیستی با پیشینه پیروزی در سوپربایک جهانی.","accel":2.7,"fuel":7.9,"price":19250,"rating":4.6},{"id":65,"brand":"MV Agusta","name":"Superveloce 800","type":"سوپراسپرت","cc":798,"hp":148,"nm":88,"kg":175,"top":255,"year":2025,"engine":"سه سیلندر","desc":"اسپرت میان‌حجم با طراحی الهام‌گرفته از موتورهای کلاسیک مسابقه.","accel":3.4,"fuel":6.2,"price":16900,"rating":4.9},{"id":66,"brand":"Moto Guzzi","name":"V7 Stone","type":"کلاسیک","cc":853,"hp":65,"nm":73,"kg":209,"top":180,"year":2025,"engine":"V-twin عرضی","desc":"کلاسیک ایتالیایی با موتور دوسیلندر عرضی نمادین.","accel":4.7,"fuel":5.3,"price":9250,"rating":4.7},{"id":67,"brand":"Moto Guzzi","name":"V100 Mandello","type":"تورینگ","cc":1042,"hp":115,"nm":105,"kg":233,"top":230,"year":2025,"engine":"V-twin عرضی","desc":"تورینگ-اسپرت مدرن با آیرودینامیک تطبیقی فعال.","accel":3.6,"fuel":6.4,"price":12300,"rating":4.6},{"id":68,"brand":"Husqvarna","name":"Svartpilen 401","type":"نیکد","cc":399,"hp":43,"nm":39,"kg":158,"top":165,"year":2025,"engine":"تک سیلندر","desc":"نیکد اسکندیناوی با طراحی مینیمال و شخصیت شهری.","accel":4.6,"fuel":3.9,"price":6550,"rating":4.6},{"id":69,"brand":"Husqvarna","name":"Norden 901","type":"ادونچر","cc":889,"hp":105,"nm":100,"kg":204,"top":210,"year":2025,"engine":"دوقلو موازی","desc":"ادونچر سبک با گرایش جدی به مسیرهای طبیعت‌گردی.","accel":3.8,"fuel":6.8,"price":10850,"rating":4.7},{"id":70,"brand":"Indian Motorcycle","name":"Scout","type":"کروزر","cc":1133,"hp":78,"nm":98,"kg":249,"top":170,"year":2025,"engine":"V-twin","desc":"کروزر کلاسیک آمریکایی با تاریخچه یک قرنی.","accel":4.3,"fuel":8.9,"price":10200,"rating":4.8},{"id":71,"brand":"Indian Motorcycle","name":"Chieftain","type":"تورینگ","cc":1890,"hp":122,"nm":170,"kg":363,"top":180,"year":2025,"engine":"V-twin","desc":"تورینگ بزرگ آمریکایی با تجهیزات کامل سفر.","accel":3.9,"fuel":11.6,"price":14400,"rating":4.6},{"id":72,"brand":"Zero Motorcycles","name":"SR/F","type":"برقی","cc":0,"hp":110,"nm":190,"kg":220,"top":200,"year":2025,"engine":"موتور الکتریکی","desc":"نیکد برقی با شتاب فوری و بدون صدای اگزوز.","accel":3.4,"fuel":0,"price":9900,"rating":4.8},{"id":73,"brand":"Zero Motorcycles","name":"DSR/X","type":"برقی","cc":0,"hp":100,"nm":229,"kg":260,"top":180,"year":2025,"engine":"موتور الکتریکی","desc":"ادونچر برقی با گشتاور بالا برای جاده و مسیر مختلط.","accel":3.9,"fuel":0,"price":9350,"rating":4.8},{"id":74,"brand":"Energica","name":"Ego+","type":"برقی","cc":0,"hp":145,"nm":215,"kg":260,"top":240,"year":2025,"engine":"موتور الکتریکی","desc":"سوپراسپرت برقی ایتالیایی با هدف رقابت مستقیم با سوپربایک‌های سوختی.","accel":2.9,"fuel":0,"price":15800,"rating":4.8},{"id":75,"brand":"CFMoto","name":"800NK","type":"نیکد","cc":799,"hp":94,"nm":78,"kg":198,"top":210,"year":2025,"engine":"دوقلو موازی","desc":"نیکد مقرون‌به‌صرفه با کیفیت رو به رشد سازنده چینی.","accel":3.9,"fuel":6.1,"price":5300,"rating":4.6},{"id":76,"brand":"CFMoto","name":"450MT","type":"ادونچر","cc":449,"hp":44,"nm":42,"kg":193,"top":160,"year":2025,"engine":"دوقلو موازی","desc":"ادونچر مقرون‌به‌صرفه با تجهیزات نسبتاً کامل.","accel":5.0,"fuel":4.5,"price":3500,"rating":4.3},{"id":77,"brand":"Benelli","name":"TRK 502","type":"ادونچر","cc":500,"hp":47,"nm":46,"kg":213,"top":170,"year":2025,"engine":"دوقلو موازی","desc":"ادونچر پرفروش کلاس میانی با قیمت رقابتی.","accel":5.1,"fuel":4.8,"price":3650,"rating":4.3},{"id":78,"brand":"Benelli","name":"Leoncino 500","type":"کلاسیک","cc":500,"hp":47,"nm":46,"kg":209,"top":175,"year":2025,"engine":"دوقلو موازی","desc":"اسکرمبلر کلاسیک با ظاهر متفاوت و رانندگی راحت.","accel":5.0,"fuel":4.7,"price":3650,"rating":4.4}];
+window.BRANDS=[{"name":"Honda","country":"ژاپن","logo":"Wing","desc":"موتورسیکلت‌های شهری، اسپرت و ماجراجویی"},{"name":"Yamaha","country":"ژاپن","logo":"Tuning Fork","desc":"اسپرت، نیکد، آفرود و شهری"},{"name":"Kawasaki","country":"ژاپن","logo":"River Mark","desc":"سوپراسپرت، نیکد و تورینگ"},{"name":"Suzuki","country":"ژاپن","logo":"S","desc":"اسپرت، ادونچر و شهری"},{"name":"Ducati","country":"ایتالیا","logo":"Shield","desc":"اسپرت، نیکد و تورینگ"},{"name":"BMW Motorrad","country":"آلمان","logo":"Roundel","desc":"ادونچر، تورینگ و اسپرت"},{"name":"KTM","country":"اتریش","logo":"Ready to Race","desc":"نیکد، ادونچر و آفرود"},{"name":"Triumph","country":"بریتانیا","logo":"Triumph","desc":"کلاسیک، نیکد و تورینگ"},{"name":"Harley-Davidson","country":"آمریکا","logo":"Bar & Shield","desc":"کروزر و تورینگ"},{"name":"Royal Enfield","country":"هند","logo":"Royal Enfield","desc":"کلاسیک، شهری و ادونچر"},{"name":"Aprilia","country":"ایتالیا","logo":"Lion","desc":"اسپرت و نیکد"},{"name":"MV Agusta","country":"ایتالیا","logo":"MV","desc":"سوپراسپرت و نیکد"},{"name":"Moto Guzzi","country":"ایتالیا","logo":"Eagle","desc":"کلاسیک و تورینگ با موتور V-twin عرضی"},{"name":"Husqvarna","country":"اتریش/سوئد","logo":"Crown","desc":"نیکد و ادونچر با طراحی اسکاندیناویایی"},{"name":"Indian Motorcycle","country":"آمریکا","logo":"Headdress","desc":"کروزر و تورینگ کلاسیک آمریکایی"},{"name":"Zero Motorcycles","country":"آمریکا","logo":"Z","desc":"موتورسیکلت‌های برقی نیکد و ادونچر"},{"name":"Energica","country":"ایتالیا","logo":"E","desc":"سوپراسپرت و نیکد برقی با کارایی رقابتی"},{"name":"CFMoto","country":"چین","logo":"CF","desc":"نیکد و ادونچر مقرون‌به‌صرفه"},{"name":"Benelli","country":"ایتالیا/چین","logo":"Benelli","desc":"ادونچر و کلاسیک با قیمت رقابتی"}];
+window.FACTS=[["فنی","حجم موتور با قدرت یکی نیست","CC فقط حجم جابه‌جایی موتور را بیان می‌کند؛ طراحی موتور، دور موتور، تنفس، نسبت تراکم و مدیریت الکترونیکی هم روی خروجی اثر دارند."],["فنی","گشتاور یعنی چه؟","گشتاور توانایی چرخاندن را توصیف می‌کند. در استفاده خیابانی، گشتاور در دورهای پایین و میانی می‌تواند روی حس کشش اثر زیادی داشته باشد."],["تاریخی","چرا موتورهای چهارسیلندر مشهور شدند؟","چهارسیلندرهای خطی می‌توانند دور موتور بالا، صدای خاص و تحویل قدرت نرم داشته باشند و در چندین دهه در کلاس‌های مختلف استفاده شده‌اند."],["ایمنی","ترمزگیری اضطراری","در موتورسیکلت‌های مدرن ABS می‌تواند در ترمزگیری شدید به جلوگیری از قفل چرخ‌ها کمک کند؛ عملکرد واقعی به سطح مسیر، لاستیک و شرایط سواری وابسته است."],["فرهنگ","کافه‌ریسر چیست؟","کافه‌ریسر به سبک موتورسیکلت‌های سبک و اسپرتی گفته می‌شود که ریشه تاریخی آن به فرهنگ موتورسواری بریتانیا در میانه قرن بیستم برمی‌گردد."],["فنی","چرا وزن مهم است؟","وزن روی شتاب، ترمز، تغییر مسیر، مانور در سرعت پایین و تجربه کلی سواری اثر می‌گذارد. نسبت قدرت به وزن هم برای مقایسه عملکرد مفید است."],["فنی","زنجیر یا تسمه یا شفت؟","زنجیر معمولاً سبک و کارآمد است اما نیاز به نگهداری دارد؛ تسمه تمیزتر و کم‌دردسرتر است؛ انتقال قدرت شفت در برخی تورینگ‌ها و مدل‌های خاص محبوب است."],["تاریخی","اولین موتورسیکلت‌ها","موتورسیکلت مدرن در اواخر قرن نوزدهم شکل گرفت و طی قرن بیستم از یک وسیله ساده به خانواده بزرگی از کلاس‌ها و کاربردها تبدیل شد."],["فنی","V-twin چه حسی دارد؟","موتورهای V-twin می‌توانند گشتاور و شخصیت صوتی مشخصی داشته باشند. زاویه سیلندر، میل‌لنگ و تنظیم موتور روی رفتار آن اثر می‌گذارد."],["مسابقه","MotoGP با موتور خیابانی فرق دارد","موتورهای مسابقه‌ای برای شرایط خاص پیست طراحی می‌شوند و بسیاری از ویژگی‌هایشان مستقیماً برای استفاده روزمره یا خیابانی مناسب نیست."],["فنی","موتورسیکلت برقی چطور کار می‌کند؟","به‌جای موتور احتراق داخلی، از باتری و موتور الکتریکی استفاده می‌شود که می‌تواند گشتاور را تقریباً بلافاصله و بدون نیاز به دنده تحویل دهد."],["فنی","کشویی جلو چیست؟","فورک تلسکوپی رایج‌ترین سیستم تعلیق جلو است. برخی موتورهای پیشرفته از فورک‌های وارونه یا سیستم‌های الکترونیکی تطبیقی استفاده می‌کنند."],["ایمنی","لباس مناسب سواری","کلاه‌کاسک استاندارد، دستکش، کاپشن و بوت مناسب می‌توانند در کاهش شدت آسیب در تصادف نقش داشته باشند؛ انتخاب تجهیزات باید متناسب با نوع سواری باشد."],["فرهنگ","اسکرمبلر از کجا آمد؟","اسکرمبلرها از موتورهای جاده‌ای دهه‌های میانی قرن بیستم گرفته شده‌اند که برای مسابقات آفرود سبک تغییر می‌کردند و امروز به سبکی مستقل تبدیل شده‌اند."],["فنی","کنترل کشش (TC) چه می‌کند؟","سامانه کنترل کشش می‌تواند لغزش بیش‌ازحد چرخ محرک را تشخیص داده و قدرت را برای حفظ پایداری تنظیم کند؛ رفتار دقیق آن بین برندها متفاوت است."],["مسابقه","کلاس‌های مختلف مسابقه","از موتوکراس و اندورو گرفته تا رودریسینگ و ترایال، هر کلاس مسابقه به مهارت‌ها و موتورهای متفاوتی نیاز دارد."],["فنی","باد لاستیک چرا مهم است؟","فشار باد نادرست می‌تواند روی چسبندگی، سایش، مصرف سوخت و رفتار موتور در پیچ اثر بگذارد؛ فشار توصیه‌شده سازنده نقطه شروع خوبی است."]];
+window.GLOSSARY=[["ABS","سامانه ضدقفل ترمز"],["CC","حجم جابه‌جایی موتور بر حسب سانتی‌متر مکعب"],["HP","اسب‌بخار؛ واحد رایج بیان توان"],["Nm","نیوتن‌متر؛ واحد گشتاور"],["RPM","تعداد دور موتور در دقیقه"],["Quickshifter","سامانه تعویض دنده سریع بدون استفاده کامل از کلاچ"],["Traction Control","کنترل لغزش چرخ محرک"],["Wheelbase","فاصله محوری بین چرخ جلو و عقب"],["Curb Weight","وزن آماده حرکت طبق روش اعلام سازنده"],["Fairing","پوشش آیرودینامیکی اطراف بخش‌هایی از موتورسیکلت"],["Naked","موتورسیکلت شهری/اسپرت با پوشش بدنه کمتر"],["Adventure","کلاس چندمنظوره جاده و مسیرهای خاکی"],["Cruiser","کلاس راحت و گشتاورمحور با وضعیت نشستن خاص"],["Touring","موتورسیکلت‌های طراحی‌شده برای سفرهای طولانی"],["kWh","کیلووات‌ساعت؛ واحد ظرفیت باتری در موتورهای برقی"],["Regenerative Braking","بازیابی بخشی از انرژی جنبشی حین ترمزگیری در موتورهای برقی"],["IMU","واحد اندازه‌گیری اینرسی؛ حسگری که شیب و شتاب موتور را برای سیستم‌های الکترونیکی می‌سنجد"],["Slipper Clutch","کلاچی که هنگام دنده‌سبک‌کردن ناگهانی از قفل‌شدن چرخ عقب جلوگیری می‌کند"],["Wheelie","بلندشدن چرخ جلو حین شتاب‌گیری شدید"],["Steering Head Angle","زاویه محور فرمان که روی پایداری و چابکی مسیر اثر می‌گذارد"],["Payload","حداکثر باری که موتورسیکلت طبق مشخصات سازنده می‌تواند حمل کند"],["Homologation","تأیید رسمی مطابقت یک موتور با استانداردهای فنی یا مسابقه‌ای برای عرضه یا رقابت"]];
+window.QUIZZES=[["کدام مورد گشتاور را با واحد رایج نیوتن‌متر بیان می‌کند؟",["قدرت","گشتاور","وزن","حجم"],1],["ABS چه کاری انجام می‌دهد؟",["افزایش حجم موتور","کاهش مصرف به‌صورت قطعی","کمک به جلوگیری از قفل چرخ در ترمزگیری","افزایش حداکثر سرعت"],2],["R در بسیاری از نام‌گذاری‌های اسپرت معمولاً به چه چیزی اشاره می‌کند؟",["یک استاندارد واحد جهانی","بخشی از نام‌گذاری مدل","نوع سوخت","تعداد سیلندر"],1],["کدام کلاس برای سفرهای جاده‌ای و مسیرهای متنوع شناخته می‌شود؟",["Adventure","Drag","Scooter فقط","Motocross فقط"],0],["واحد Nm مربوط به چیست؟",["قدرت","حجم","گشتاور","وزن"],2],["کدام یک ویژگی مشخصه موتورسیکلت‌های برقی است؟",["نیاز به تعویض دنده دستی زیاد","تحویل گشتاور تقریباً آنی","صدای اگزوز بلند","مصرف سوخت بنزین بالا"],1],["کلاچ لغزنده (Slipper Clutch) چه کمکی می‌کند؟",["افزایش حداکثر سرعت","جلوگیری از قفل‌شدن چرخ عقب هنگام دنده‌سبک‌کردن ناگهانی","کاهش وزن موتور","افزایش حجم موتور"],1],["کدام گزینه معمولاً وزن کمتر و چابکی بیشتری دارد؟",["تورینگ بزرگ","نیکد سبک تک‌سیلندر","کروزر حجیم","ادونچر بزرگ دوقلو"],1],["IMU در موتورسیکلت‌های مدرن چه چیزی را اندازه می‌گیرد؟",["دمای موتور","شیب و شتاب برای سیستم‌های الکترونیکی","فشار باد لاستیک","ظرفیت باک بنزین"],1],["اسکرمبلر از نظر ریشه تاریخی به چه چیزی نزدیک‌تر است؟",["مسابقات آفرود سبک دهه‌های میانی قرن بیستم","موتورهای مسابقه‌ای مدرن MotoGP","اسکوترهای برقی امروزی","کامیون‌های سنگین"],0]];
+</script>
+<script src="app.js"></script>
+</body></html>
